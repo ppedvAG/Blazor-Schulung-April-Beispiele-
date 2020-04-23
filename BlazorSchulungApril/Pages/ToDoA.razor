@@ -20,7 +20,7 @@
     <li class="list-group-item">
         @if (item.IsEdit)
         {
-            <input @bind="item.Text" @onfocusout="@(_=>item.IsEdit=false)" />
+            <input @bind="item.Text" @onfocusout="()=>aktualisiere(item)" />
 
         }
         else
@@ -41,6 +41,13 @@
 </ul>
 @code {
     public Aufgabe NeuAufgabe { get; set; } = new Aufgabe();
+
+    void aktualisiere(Aufgabe a)
+    {
+        a.IsEdit = false;
+        vm.Update(a);
+
+    }
 
     void save()
     {

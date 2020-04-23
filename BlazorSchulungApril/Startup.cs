@@ -30,7 +30,7 @@ namespace BlazorSchulungApril
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddDbContext<TodoContext>();
-            services.AddSingleton<AufgabenVM>();
+            services.AddScoped<AufgabenVM>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
