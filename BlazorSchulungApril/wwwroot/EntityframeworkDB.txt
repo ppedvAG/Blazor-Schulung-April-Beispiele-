@@ -1,0 +1,6 @@
+﻿Create DB von Model bzw COntext
+
+
+add-migration "todo"
+
+ update-database 
