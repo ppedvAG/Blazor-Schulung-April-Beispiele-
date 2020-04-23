@@ -1,12 +1,21 @@
 ﻿@page "/todo"
-@using BlazorSchulungApril.Data 
+@using BlazorSchulungApril.Data
 @inject AufgabenVM vm
 <h3>ToDo  App</h3>
-<input class="form-control" @bind="NeuAufgabe"/>
-<button class="btn btn-outline-primary" @onclick="save">save</button>
 
+<div class="input-group mb-3">
+    <input type="text" class="form-control" @bind="NeuAufgabe">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button"  @onclick="save">Save</button>
+    </div>
+</div>
 
-
+<ul class="list-group">
+    @foreach (var item in vm.Aufgaben)
+    {
+        <li class="list-group-item">@item.Text </li>
+    }
+</ul>
 @code {
     public string NeuAufgabe { get; set; }
 
