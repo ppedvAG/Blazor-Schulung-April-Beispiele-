@@ -1,0 +1,19 @@
+﻿@page "/mini"
+<h3>MiniRechner</h3>
+<input class="form-control" @bind="eins"/>
+<input class="form-control" @bind="zwei"/>
+<hr />
+<button class="btn btn-danger" @onclick="add">Add</button>
+@Ergebnis
+ 
+@code {
+    public int eins { get; set; }
+    public int zwei { get; set; }
+    public int Ergebnis { get; set; }
+    void add()
+    {
+
+        Ergebnis = eins + zwei;
+    }
+
+}
