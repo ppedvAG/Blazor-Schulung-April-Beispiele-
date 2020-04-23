@@ -4,26 +4,30 @@
 <h3>ToDo  App</h3>
 
 <div class="input-group mb-3">
-    <input type="text" class="form-control" @bind="NeuAufgabe" @onkeyup="check4enter">
+    <input type="datetime-local" class="form-control" @bind="NeuAufgabe.ErledigtBis" 
+           @bind:culture='System.Globalization.CultureInfo.GetCultureInfo("de-DE")'
+           @bind:format="dd.MM.yyyy"
+           >
+    <input type="text" class="form-control" @bind="NeuAufgabe.Text" @onkeyup="check4enter">
     <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button"  @onclick="save">Save</button>
+        <button class="btn btn-outline-secondary" type="button" @onclick="save">Save</button>
     </div>
 </div>
 
 <ul class="list-group">
     @foreach (var item in vm.Aufgaben)
     {
-        <li class="list-group-item">@item.Text </li>
+        <li class="list-group-item">@item.Text @item.ErledigtBis.ToShortDateString()</li>
     }
 </ul>
 @code {
-    public string NeuAufgabe { get; set; }
+    public Aufgabe NeuAufgabe { get; set; }
 
     void save()
     {
         var a = new Aufgabe();
-        a.ErledigtBis = DateTime.Now.AddDays(2);
-        a.Text = NeuAufgabe;
+        a.ErledigtBis = NeuAufgabe.ErledigtBis;
+        a.Text = NeuAufgabe.Text;
         vm.Add(a);
 
     }
