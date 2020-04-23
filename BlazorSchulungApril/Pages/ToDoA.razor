@@ -18,8 +18,24 @@
     @foreach (var item in vm.Aufgaben)
     {
     <li class="list-group-item">
-        <input type="checkbox" @bind="item.Erledigt" />
-        <span style='@(item.Erledigt?"text-decoration:line-through":"")'> @item.Text @item.ErledigtBis.ToShortDateString()</span>
+        @if (item.IsEdit)
+        {
+            <input @bind="item.Text" @onfocusout="@(_=>item.IsEdit=false)" />
+
+        }
+        else
+        {
+            <input type="checkbox" @bind="item.Erledigt" />
+            <span style='@(item.Erledigt?"text-decoration:line-through":"")' 
+                  @onclick="@(_=>item.IsEdit=true)"
+                  >
+                @item.Text @item.ErledigtBis.ToShortDateString()
+            </span>
+        }
+
+
+
+
     </li>
     }
 </ul>
