@@ -1,7 +1,25 @@
 ﻿@page "/todo"
-<h3>ToDoA</h3>
+@using BlazorSchulungApril.Data 
+@inject AufgabenVM vm
+<h3>ToDo  App</h3>
+<input class="form-control" @bind="NeuAufgabe"/>
+<button class="btn btn-outline-primary" @onclick="save">save</button>
+
+
 
 @code {
+    public string NeuAufgabe { get; set; }
 
+    void save()
+    {
+        vm.Aufgaben.
+
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        vm.laden();
+        return base.OnInitializedAsync();
+    }
 
 }
