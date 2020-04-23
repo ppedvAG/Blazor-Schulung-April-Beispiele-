@@ -4,7 +4,7 @@
 <h3>ToDo  App</h3>
 
 <div class="input-group mb-3">
-    <input type="text" class="form-control" @bind="NeuAufgabe">
+    <input type="text" class="form-control" @bind="NeuAufgabe" @onkeyup="check4enter">
     <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button"  @onclick="save">Save</button>
     </div>
@@ -32,6 +32,14 @@
     {
         vm.laden();
         return base.OnInitializedAsync();
+    }
+
+    void check4enter(KeyboardEventArgs e)
+    {
+        if (e.Key==ConsoleKey.Enter.ToString())
+        {
+            save();
+        }
     }
 
 }
