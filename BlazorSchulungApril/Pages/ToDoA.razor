@@ -12,7 +12,10 @@
 
     void save()
     {
-        vm.Aufgaben.
+        var a = new Aufgabe();
+        a.ErledigtBis = DateTime.Now.AddDays(2);
+        a.Text = NeuAufgabe;
+        vm.Add(a);
 
     }
 
