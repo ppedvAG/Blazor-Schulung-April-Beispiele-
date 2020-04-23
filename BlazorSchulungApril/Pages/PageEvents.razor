@@ -1,0 +1,21 @@
+﻿@page "/pe"
+<h3>PageEvents</h3>
+<button @onclick="nix">nix</button>
+@code {
+    void nix()
+    {
+        //bei Aktion #1
+
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        //bei jedem Rendervorgang #2
+
+    }
+    protected override void OnInitialized()
+    {
+      //initial 2x #1
+    }
+
+
+}
