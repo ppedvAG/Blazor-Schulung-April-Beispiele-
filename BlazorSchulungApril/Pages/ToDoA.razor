@@ -4,10 +4,10 @@
 <h3>ToDo  App</h3>
 
 <div class="input-group mb-3">
-    <input type="datetime-local" class="form-control" @bind="NeuAufgabe.ErledigtBis" 
-           @bind:culture='System.Globalization.CultureInfo.GetCultureInfo("de-DE")'
-           @bind:format="dd.MM.yyyy"
-           >
+    @*<input type="datetime-local" class="form-control" @bind="NeuAufgabe.ErledigtBis"
+        @bind:culture='System.Globalization.CultureInfo.GetCultureInfo("en-US")'
+        @bind:format="dd.MM.yyyy hh:mm">*@
+    <input class="form-control" @bind="NeuAufgabe.ErledigtBis">
     <input type="text" class="form-control" @bind="NeuAufgabe.Text" @onkeyup="check4enter">
     <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" @onclick="save">Save</button>
@@ -17,11 +17,14 @@
 <ul class="list-group">
     @foreach (var item in vm.Aufgaben)
     {
-        <li class="list-group-item">@item.Text @item.ErledigtBis.ToShortDateString()</li>
+    <li class="list-group-item">
+        <input type="checkbox" @bind="item.Erledigt" />
+        <span style='@(item.Erledigt?"text-decoration:line-through":"")'> @item.Text @item.ErledigtBis.ToShortDateString()</span>
+    </li>
     }
 </ul>
 @code {
-    public Aufgabe NeuAufgabe { get; set; }
+    public Aufgabe NeuAufgabe { get; set; } = new Aufgabe();
 
     void save()
     {
@@ -40,7 +43,7 @@
 
     void check4enter(KeyboardEventArgs e)
     {
-        if (e.Key==ConsoleKey.Enter.ToString())
+        if (e.Key == ConsoleKey.Enter.ToString())
         {
             save();
         }
