@@ -4,10 +4,11 @@
 <h3>ToDo  App</h3>
 
 <div class="input-group mb-3">
-    @*<input type="datetime-local" class="form-control" @bind="NeuAufgabe.ErledigtBis"
-        @bind:culture='System.Globalization.CultureInfo.GetCultureInfo("en-US")'
-        @bind:format="dd.MM.yyyy hh:mm">*@
-    <input class="form-control" @bind="NeuAufgabe.ErledigtBis">
+    <input type="datetime-local" class="form-control" @bind="NeuAufgabe.ErledigtBis"
+           @bind:culture='System.Globalization.CultureInfo.GetCultureInfo("de-DE")'
+           @bind:format="dd.MM.yyyy HH:mm">
+  
+    @*<input class="form-control" @bind="NeuAufgabe.ErledigtBis">*@
     <input type="text" class="form-control" @bind="NeuAufgabe.Text" @onkeyup="check4enter">
     <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" @onclick="save">Save</button>

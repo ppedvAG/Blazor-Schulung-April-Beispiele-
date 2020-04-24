@@ -1,0 +1,24 @@
+﻿@page "/datum"
+<h3>Datum</h3>
+<input @bind="MyProperty" type="datetime-local"
+       @bind:format="dd.MM.yyyy" @bind:culture='System.Globalization.CultureInfo.GetCultureInfo("de-DE")' />
+<br />
+<input @bind="MyProperty" type="datetime-local"  @bind:culture='System.Globalization.CultureInfo.GetCultureInfo("de-DE")'/>
+<br />
+<input @bind="MyProperty" @bind:format="dd.MM.yyyy" />
+<button @onclick="save">save</button>
+@MyProperty
+
+@code {
+    public DateTime MyProperty { get; set; }
+    void save()
+    {
+
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        MyProperty = DateTime.Now;
+        return base.OnInitializedAsync();
+    }
+}

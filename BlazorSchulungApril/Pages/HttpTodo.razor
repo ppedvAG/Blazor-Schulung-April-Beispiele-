@@ -1,0 +1,42 @@
+﻿@page "/todo2"
+@inject IHttpClientFactory Http
+@using System.Text.Json
+@using BlazorSchulungApril.Data
+<h3>HttpTodo</h3>
+@if (todoliste == null)
+{
+    <div>lade daten</div> 
+}
+else
+{ 
+<table class="table table-striped">
+    @foreach (var item in todoliste)
+    {
+    <tr>
+        <td>@item.id</td>
+        <td>@item.userId</td>
+        <td>@item.title</td>
+        <td>@item.completed</td>
+    </tr>
+    }
+</table>
+}
+@code 
+{      
+
+    public List<Todo2> todoliste { get; set; } 
+    protected override async Task OnInitializedAsync()
+    {
+        var client = Http.CreateClient();
+
+        var response = await client.GetAsync(@"https://jsonplaceholder.typicode.com/todos");
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            todoliste = await JsonSerializer.DeserializeAsync<List<Todo2>>(responseStream);
+
+
+        }
+
+    }
+}
