@@ -41,15 +41,19 @@ else
     {
 
         var s =  JsonSerializer.Serialize(todoliste);
+        string[] ss =new string[] { "daten", s };
         //localStorage.setItem("lastname", "Smith"); JavaScript
         // kein Funktionsaufruf document.title = newTitle NOK
-        JSRuntime.InvokeVoidAsync("localStorage.setItem", s);
+        JSRuntime.InvokeVoidAsync("localStorage.setItem",ss);
 
     }
-    void lesen()
+   async void lesen()
     {
-        var s=  JSRuntime.InvokeAsync<string>("localStorage.getItem");
-        todoliste = JsonSerializer.Deserialize<List<Todo2>>(s.Result);
+
+
+        var s= await  JSRuntime.InvokeAsync<string>("localStorage.getItem",new string[] { "daten" });
+        todoliste = JsonSerializer.Deserialize<List<Todo2>>(s);
+        StateHasChanged();
     }
 
 
