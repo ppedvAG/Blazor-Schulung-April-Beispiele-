@@ -1,0 +1,15 @@
+﻿@page "/titel"
+@inject IJSRuntime JSRuntime 
+@inject TitelRender pagetitel
+<h3>DocumentTitel</h3>
+<TitelRender Titel="ppedv tollerseiten titel"></TitelRender>
+
+@code {     
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        pagetitel.Titel2 = "wahnsinnig tollle";
+        // await JSRuntime.InvokeVoidAsync("eval", "document.title='ppedv'"); //eval(document.title="ppedv")
+    }
+
+}

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorSchulungApril.Data;
+using BlazorSchulungApril.Pages;
 
 namespace BlazorSchulungApril
 {
@@ -32,6 +33,7 @@ namespace BlazorSchulungApril
             services.AddDbContext<TodoContext>();
             services.AddScoped<AufgabenVM>();
             services.AddHttpClient();
+            services.AddScoped<TitelRender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
