@@ -1,5 +1,34 @@
-﻿<h3>AutoFormular</h3>
+﻿@page "/auto"
+<h3>AutoFormular</h3>
+
+<EditForm Model="MyCar" OnValidSubmit="speichern">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Hersteller</label>
+        <InputText @bind-Value="MyCar.Hersteller" class="form-control"></InputText>
+        <ValidationMessage For="@(()=>MyCar.Hersteller)"> </ValidationMessage>
+
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Hersteller</label>
+        <BoostrapInputText @bind-Value="MyCar.Hersteller" class="form-control"></BoostrapInputText>
+        <ValidationMessage For="@(()=>MyCar.Hersteller)"> </ValidationMessage>
+
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Leistung</label>
+        <InputNumber @bind-Value="MyCar.Leistung" class="form-control"></InputNumber>
+        <ValidationMessage For="@(()=>MyCar.Leistung)"> </ValidationMessage>
+
+    </div>
+    <button type="submit">speichern</button>
+    <ValidationSummary></ValidationSummary>
+</EditForm>
 
 @code {
+    public BlazorSchulungApril.Data.Car MyCar { get; set; } = new Data.Car();
+    void speichern()
+    {
 
+    }
 }

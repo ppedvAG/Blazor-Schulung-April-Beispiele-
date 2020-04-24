@@ -12,6 +12,7 @@ namespace BlazorSchulungApril.Data
         [Range(42,450,ErrorMessage ="PS Range beachten")]
         public int Leistung { get; set; }
         [Required(ErrorMessage ="da muss name rein")]
+        [MaxLength(5,ErrorMessage ="nur Kürzel")]
         public string Hersteller { get; set; }
     }
 }
