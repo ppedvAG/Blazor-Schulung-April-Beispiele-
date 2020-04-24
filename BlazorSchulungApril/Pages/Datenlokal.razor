@@ -48,8 +48,8 @@ else
     }
     void lesen()
     {
-        var s=  JSRuntime.InvokeVoidAsync("localStorage.getItem");
-        todoliste = JsonSerializer.Deserialize<List<Todo2>>(s);
+        var s=  JSRuntime.InvokeAsync<string>("localStorage.getItem");
+        todoliste = JsonSerializer.Deserialize<List<Todo2>>(s.Result);
     }
 
 
