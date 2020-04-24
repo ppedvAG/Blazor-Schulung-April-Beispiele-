@@ -1,0 +1,8 @@
+﻿@page "/bindings"
+<h3>Bindings Autocomplete</h3>
+<input @bind-value="suche" @bind-value:event="oninput"/>
+@suche
+
+@code {
+    public string suche { get; set; }
+}

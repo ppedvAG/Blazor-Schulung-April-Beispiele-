@@ -1,0 +1,56 @@
+﻿@page "/local"
+@inject IHttpClientFactory Http
+@inject IJSRuntime JSRuntime
+
+@using System.Text.Json
+@using BlazorSchulungApril.Data
+
+
+<h3>Datenlokal</h3>
+<button @onclick="laden">service lesen</button>
+<button @onclick="speichern">lokal speichern</button>
+<button @onclick="lesen">lokal lesen</button>
+@if (todoliste == null)
+{
+    <div>lade daten</div>
+}
+else
+{
+    @todoliste.Count
+}
+
+
+@code {
+
+    public List<Todo2> todoliste { get; set; }
+    async void laden()
+    {
+        var client = Http.CreateClient();
+
+        var response = await client.GetAsync(@"https://jsonplaceholder.typicode.com/todos");
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            todoliste = await JsonSerializer.DeserializeAsync<List<Todo2>>(responseStream);
+
+
+        }
+
+    }
+    void speichern()
+    {
+
+        var s =  JsonSerializer.Serialize(todoliste);
+        //localStorage.setItem("lastname", "Smith"); JavaScript
+        // kein Funktionsaufruf document.title = newTitle NOK
+        JSRuntime.InvokeVoidAsync("localStorage.setItem", s);
+
+    }
+    void lesen()
+    {
+        var s=  JSRuntime.InvokeVoidAsync("localStorage.getItem");
+        todoliste = JsonSerializer.Deserialize<List<Todo2>>(s);
+    }
+
+
+}
