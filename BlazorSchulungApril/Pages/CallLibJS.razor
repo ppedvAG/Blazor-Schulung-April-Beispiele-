@@ -1,0 +1,13 @@
+﻿@page "/cljs"
+@using RazorClassLibrary1 
+@inject IJSRuntime JSRuntime
+<h3>CallLibJS</h3>
+<button @onclick="call">call</button>
+@code {
+    void call()
+    {
+        ExampleJsInterop.Prompt(JSRuntime, "Hallo Welt");
+    }
+
+
+}
