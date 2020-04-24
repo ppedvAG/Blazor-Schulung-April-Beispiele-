@@ -21,6 +21,12 @@
         <ValidationMessage For="@(()=>MyCar.Leistung)"> </ValidationMessage>
 
     </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Baujahr</label>
+    <InputDate @bind-Value="MyCar.Jahr" class="form-control" ></InputDate>
+    <ValidationMessage For="@(()=>MyCar.Jahr)"> </ValidationMessage>
+
+    </div>
     <button type="submit">speichern</button>
     <ValidationSummary></ValidationSummary>
 </EditForm>

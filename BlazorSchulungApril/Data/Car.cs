@@ -14,5 +14,6 @@ namespace BlazorSchulungApril.Data
         [Required(ErrorMessage ="da muss name rein")]
         [MaxLength(5,ErrorMessage ="nur Kürzel")]
         public string Hersteller { get; set; }
+        public DateTime Jahr { get; set; }
     }
 }
