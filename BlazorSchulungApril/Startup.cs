@@ -33,7 +33,8 @@ namespace BlazorSchulungApril
             services.AddDbContext<TodoContext>();
             services.AddScoped<AufgabenVM>();
             services.AddHttpClient();
-            services.AddScoped<TitelRender>();
+         //   services.AddScoped<TitelRender>();
+            services.AddScoped<PageTitelVM>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

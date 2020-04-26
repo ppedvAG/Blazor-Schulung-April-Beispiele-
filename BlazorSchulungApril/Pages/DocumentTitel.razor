@@ -1,15 +1,23 @@
 ﻿@page "/titel"
+@using BlazorSchulungApril.Data 
 @inject IJSRuntime JSRuntime 
-@inject TitelRender pagetitel
+@inject PageTitelVM pagetitel
 <h3>DocumentTitel</h3>
-<TitelRender Titel="ppedv tollerseiten titel"></TitelRender>
+<button   @onclick="change">titel</button>
+@pagetitel.Titel
+
 
 @code {     
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        pagetitel.Titel2 = "wahnsinnig tollle";
+        pagetitel.Titel = "wahnsinnig tollle";
+        //  StateHasChanged();
         // await JSRuntime.InvokeVoidAsync("eval", "document.title='ppedv'"); //eval(document.title="ppedv")
+    }
+    void change()
+    {
+        pagetitel.Titel="yyyyyyyyyyyyyyyyy";
     }
 
 }
